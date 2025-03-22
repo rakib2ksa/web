@@ -15,6 +15,19 @@ body {
 p{
    text-align: justify;
 }
+.scrolling-text {
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: scroll 9s linear infinite;
+  color: #04f80d;
+  font-size: xx-large;
+}
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
 .layout_padding {
   padding: 90px 0;
 }
