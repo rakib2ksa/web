@@ -1,15 +1,16 @@
-body {
-  font-family: "kalpurush", sans-serif;
-  color: #0c0c0c;
-  background-color: #ffffff;
-  overflow-x: hidden;
-}
 @font-face {
     font-family: 'kalpurush';
     src: url('kalpurush.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
         }
+body {
+  font-family: "kalpurush", sans-serif;
+  color: #0c0c0c;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
 p{
    text-align: justify;
 }
