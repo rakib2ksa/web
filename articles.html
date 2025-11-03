@@ -6,7 +6,34 @@
 <title>আর্টিকেলস — عطاء الرحمن راقب</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
+:root{
+  --bg:#0b0f16; --ink:#eaf2ff; --accent1:#7ddcff; --accent2:#9dffb4;
+}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Poppins,ui-sans-serif,system-ui;
+}
+.navbar{
+  position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;background:linear-gradient(180deg,rgba(11,15,22,.96),rgba(11,15,22,.65));
+  backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08);
+}
+.brand{display:flex;align-items:center;gap:10px}
+.dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(90deg,var(--accent1),var(--accent2));box-shadow:0 0 16px rgba(125,220,255,.8)}
+.title{margin:0;font-size:1.2rem;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* তিন ডট মেনু */
+.menu{position:relative;}
+.menu button{background:none;border:none;font-size:1.8rem;color:var(--ink);cursor:pointer;padding:4px 8px;border-radius:8px;}
+.menu button:hover{background:rgba(255,255,255,.1);}
+.menu-content{display:none;position:absolute;right:0;margin-top:6px;background:rgba(20,25,35,.96);border:1px solid rgba(255,255,255,.1);border-radius:10px;min-width:160px;box-shadow:0 8px 25px rgba(0,0,0,.45);}
+.menu-content a{display:block;padding:10px 14px;text-decoration:none;color:var(--ink);font-weight:600;}
+.menu-content a:hover{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#0b0f16;}
+.menu.show .menu-content{display:block;animation:fadeIn .25s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+
+/* আর্টিকেল অংশ */
+:root{
     --bg:#0b0f16; --ink:#eaf2ff; --muted:#9fb0d5;
     --accent1:#7ddcff; --accent2:#9dffb4;
   }
@@ -39,15 +66,20 @@
   .articles .article:nth-child(10n+8){--c-bg:linear-gradient(135deg,#2a0f2f,#6d2480);--c-ink:#ffeaff;--c-ink-strong:#fff;--c-ink-soft:#ffcdfd}
   .articles .article:nth-child(10n+9){--c-bg:linear-gradient(135deg,#1f2a3a,#314e7d);--c-ink:#eaf2ff;--c-ink-strong:#fff;--c-ink-soft:#d2e2ff}
   .articles .article:nth-child(10n+10){--c-bg:linear-gradient(135deg,#2b1a18,#6f392d);--c-ink:#ffebe7;--c-ink-strong:#fff;--c-ink-soft:#ffd7d0}
+
 </style>
 </head>
 <body>
+
 <nav class="navbar">
-  <div class="brand"><span class="dot"></span><h1 class="title"> عطاء الرحمن </h1></div>
-  <div>
-    <a class="btn" href="qa.html">প্রশ্নোত্তর</a>
-    <a class="btn" href="articles.html">আর্টিকেলস</a>
-    <a href="index.html">Manu</a>
+  <div class="brand"><span class="dot"></span><h1 class="title">عطاء الرحمن راقب</h1></div>
+  <div class="menu" id="menu">
+    <button onclick="document.getElementById('menu').classList.toggle('show')">⋯</button>
+    <div class="menu-content">
+      <a href="index.html">🏠 হোম</a>
+      <a href="qa.html">❓ প্রশ্নোত্তর</a>
+      <a href="articles.html">📚 আর্টিকেলস</a>
+    </div>
   </div>
 </nav>
 
