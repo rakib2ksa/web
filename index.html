@@ -1,501 +1,298 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link rel="shortcut icon" href="lsadi.svg" type="">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Minimal Photo Gallery — Pure HTML & CSS</title>
+<style>
+  :root{
+    --bg: #0f1115;
+    --card: #141821;
+    --muted: #8b93a7;
+    --text: #e7eaf3;
+    --accent: #7aa2ff;
+    --radius: 16px;
+    --gap: 14px;
+    --shadow: 0 8px 30px rgba(0,0,0,.25);
+  }
 
-  <title> scholarship admission </title>
+  /* Page */
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(1200px 600px at 80% -10%, #182035 0%, transparent 60%) var(--bg);
+    color: var(--text);
+  }
+  .wrap{
+    max-width: 1200px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+  }
+  header{
+    margin-bottom: 22px;
+    display:flex; align-items:end; gap:16px; flex-wrap:wrap;
+  }
+  h1{
+    font-size: clamp(1.4rem, 1.1rem + 2.2vw, 2.2rem);
+    margin:0;
+    line-height:1.15;
+    letter-spacing:.3px;
+  }
+  .sub{
+    color: var(--muted);
+    font-size: .95rem;
+  }
+  .panel{
+    background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: var(--shadow);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 14px;
+  }
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+  /* Gallery grid */
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--gap);
+  }
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  .tile{
+    position:relative;
+    overflow:hidden;
+    border-radius: var(--radius);
+    background: var(--card);
+    aspect-ratio: 4 / 3;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    isolation:isolate;
+  }
+  .tile:has(a:focus-visible){
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 
-  <!--owl slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  .tile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transform: scale(1.02);
+    transition: transform .35s ease;
+  }
 
-  <!-- font awesome style -->
-  <link href="font-awesome.min.css" rel="stylesheet" />
+  .tile:hover img{ transform: scale(1.08); }
 
-  <!-- Custom styles for this template -->
-  <link href="style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="responsive.css" rel="stylesheet" />
-<link href="googleform.css" rel="stylesheet" />
-  <link href="whatsapp.css" rel="stylesheet" />
-  
+  /* Caption overlay */
+  .cap{
+    position:absolute; inset:auto 0 0 0;
+    padding: 10px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+    color:#fff;
+    font-size:.95rem;
+    display:flex; justify-content:space-between; align-items:end;
+    transform: translateY(40%);
+    opacity:.0;
+    transition: transform .25s ease, opacity .25s ease;
+    z-index:2;
+  }
+  .tile:hover .cap{ transform: translateY(0); opacity:1; }
+  .cap small{ color: #c8d2ff; opacity:.9; }
+
+  /* Subtle shine on hover */
+  .tile::after{
+    content:"";
+    position:absolute; inset:-40% -80% auto -80%;
+    height:80%;
+    transform:rotate(20deg);
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.08) 45%, transparent 80%);
+    transition: transform .6s ease;
+    pointer-events:none;
+  }
+  .tile:hover::after{ transform: translateX(50%) rotate(20deg); }
+
+  /* Lightbox (pure CSS with :target) */
+  .lightbox{
+    position: fixed; inset:0;
+    display:none;
+    place-items:center;
+    background: rgba(8,10,14,.75);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    padding: 24px;
+  }
+  .lightbox:target{ display:grid; }
+
+  .lb-card{
+    max-width: min(92vw, 1100px);
+    width: 100%;
+    border-radius: calc(var(--radius) + 6px);
+    overflow:hidden;
+    background: #0b0e14;
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    display:grid;
+    grid-template-rows: auto 44px;
+  }
+  .lb-card img{
+    width:100%; height:auto; display:block;
+  }
+  .lb-bar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 6px 10px;
+    color:#dfe6ff;
+    font-size:.95rem;
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  }
+  .close{
+    text-decoration:none;
+    padding:6px 10px;
+    border-radius: 999px;
+    border:1px solid rgba(255,255,255,.14);
+    color:#e9edff;
+    background: rgba(255,255,255,.04);
+    transition: transform .15s ease, background .15s ease;
+  }
+  .close:hover{ transform: scale(1.04); background: rgba(255,255,255,.08); }
+
+  /* Utility */
+  a{ color: inherit; }
+  .sr{ position:absolute; left:-9999px; }
+
+  /* Responsive tweaks */
+  @media (max-width:520px){
+    .cap{ font-size:.88rem; padding: 9px 10px; }
+  }
+</style>
 </head>
-
 <body>
-
-  <div class="hero_area">
-
-    <div class="hero_bg_box">
-      <div class="bg_img_box">
-        <img src="hero-bg.png" alt="">
-      </div>
-    </div>
-
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
-            <span>
-              <img src="lsadi.svg" alt="Study in the Kingdom of Saudi Arabia">
-            </span>
-          </a>
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""> </span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  ">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="university.html"> About University</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="youtube.html">Watch Video</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">Our Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact Us</a>
-              </li>
-              <form class="form-inline">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-            </ul>
-          </div>
-        </nav>
-      </div>
+  <div class="wrap">
+    <header>
+      <h1>ATAUR RAHMAN RAKIB</h1>
+      <div class="sub">Islamic Degaine</div>
     </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class="slider_section ">
-      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6 ">
-                  <div class="detail-box">
-                    <div class="scrolling-text">
-                      আবেদন শুরু ১লা মে ২০২৫ইং
-                  </div>
-                    <h1>
-                      সৌদি আরব <br>
-                      স্কলারশিপ
-                    </h1>
-                    <p>
-                      সৌদি আরবের শিক্ষা মন্ত্রণালয় তথা মিনিস্ট্রির অধীনে আবেদন করে বিশ্বের যে কোন প্রান্ত থেকে সৌদি আরবের প্রায় ২৬ টি বিশ্ববিদ্যালয়ে সম্পূর্ণ ফ্রিতে পড়ালেখার সুযোগ রয়েছে। মুয়াদালাভুক্ত যেকোনো কওমি মাদ্রাসার ছাত্ররা তাদের সানাবিয়ার সার্টিফিকেট দিয়ে, আলিয়ার শিক্ষার্থীরা আলিমের সার্টিফিকেট দিয়ে এবং হাইস্কুলের শিক্ষার্থীরা এইচএসসি সার্টিফিকেট দিয়ে আবেদন করতে পারবে।                    </p>
-                    <div class="btn-box">
-                      <h5 style="color: aliceblue;">যারা পূর্বে কখনো আবেদন করেননি তারা New apply বাটনে ক্লিক করে আবেদন করতে পারবেন।</h5>
-                      <a href="https://mim.moe.gov.sa/Registration/RegistrationFormFirstStep?q=https://studyinsaudi.moe.gov.sa" class="btn1">
-                        New Apply
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                    <img src="A112.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item ">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      সৌদি আরব <br>
-                      স্কলারশিপ
-                    </h1>
-                    <p>
-                      সৌদি আরবের শিক্ষা মন্ত্রণালয় তথা মিনিস্ট্রির অধীনে আবেদন করে বিশ্বের যে কোন প্রান্ত থেকে সৌদি আরবের প্রায় ২৬ টি বিশ্ববিদ্যালয়ে সম্পূর্ণ ফ্রিতে পড়ালেখার সুযোগ রয়েছে। মুয়াদালাভুক্ত যেকোনো কওমি মাদ্রাসার ছাত্ররা তাদের সানাবিয়ার সার্টিফিকেট দিয়ে, আলিয়ার শিক্ষার্থীরা আলিমের সার্টিফিকেট দিয়ে এবং হাইস্কুলের শিক্ষার্থীরা এইচএসসি সার্টিফিকেট দিয়ে আবেদন করতে পারবে।                    </p>
-                      <h5 style="color: aqua;">যারা পূর্বে কখনো আবেদন করেননি তারা New apply বাটনে ক্লিক করে আবেদন করতে পারবেন।
-                      </h5>
-                    <div class="btn-box">
-                      <a href="https://mim.moe.gov.sa/Registration/RegistrationFormFirstStep?q=https://studyinsaudi.moe.gov.sa" class="btn1">
-                        New Apply
-                      </a>
-                    </div>
-                    <br>
-                    <div>
-                      <h5 style="color: hwb(279 80% 4%);">যারা ২০২৪ বা তার পূর্বে আবেদন করেছিলেন তারা Log In বাটনে ক্লিক করে নিজের আইডিতে ঢুকে পুনরায় আবেদন করতে পারবেন।</h5>
-                    </div>
-                    <div class="btn-box">
-                      <a href="https://mip.moe.gov.sa/mim/account/signin?ReturnUrl=%2fmim%2fissue%2fwsfed%3fwa%3dwsignin1.0%26wtrealm%3dhttps%253a%252f%252fstudyinsaudi.moe.gov.sa%252f%26wctx%3drm%253d1%2526id%253dd90cf86e-dfe7-42bd-af29-b4d06e6f9c88%2526ru%253d%25252fFederation%25252fMIPMIMSignIn%26wct%3d2025-03-20T20%253a40%253a58Z%26wreply%3dhttps%253a%252f%252fstudyinsaudi.moe.gov.sa%252f&wa=wsignin1.0&wtrealm=https%3a%2f%2fstudyinsaudi.moe.gov.sa%2f&wctx=rm%3d1%26id%3dd90cf86e-dfe7-42bd-af29-b4d06e6f9c88%26ru%3d%252fFederation%252fMIPMIMSignIn&wct=2025-03-20T20%3a40%3a58Z&wreply=https%3a%2f%2fstudyinsaudi.moe.gov.sa%2f" class="btn1">
-                        Log In
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                    <img src="A113.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-6 ">
-                  <div class="detail-box">
-                    <h1>
-                      সৌদি আরব <br>
-                      স্কলারশিপ
-                    </h1>
-                    <p>
-                      সৌদি আরবের শিক্ষা মন্ত্রণালয় তথা মিনিস্ট্রির অধীনে আবেদন করে বিশ্বের যে কোন প্রান্ত থেকে সৌদি আরবের প্রায় ২৬ টি বিশ্ববিদ্যালয়ে সম্পূর্ণ ফ্রিতে পড়ালেখার সুযোগ রয়েছে। মুয়াদালাভুক্ত যেকোনো কওমি মাদ্রাসার ছাত্ররা তাদের সানাবিয়ার সার্টিফিকেট দিয়ে, আলিয়ার শিক্ষার্থীরা আলিমের সার্টিফিকেট দিয়ে এবং হাইস্কুলের শিক্ষার্থীরা এইচএসসি সার্টিফিকেট দিয়ে আবেদন করতে পারবে।                    </p>
-                    <div class="btn-box">
-                      <h5 style="color: bisque;">যারা ২০২৪ বা তার পূর্বে আবেদন করেছিলেন তারা Log In বাটনে ক্লিক করে নিজের আইডিতে ঢুকে পুনরায় আবেদন করতে পারবেন।</h5>                      </h5>
-                      <a href="https://mip.moe.gov.sa/mim/account/signin?ReturnUrl=%2fmim%2fissue%2fwsfed%3fwa%3dwsignin1.0%26wtrealm%3dhttps%253a%252f%252fstudyinsaudi.moe.gov.sa%252f%26wctx%3drm%253d1%2526id%253d4d20cb75-7da1-481c-ae6d-1164443539c6%2526ru%253d%25252fFederation%25252fMIPMIMSignIn%26wct%3d2025-03-21T16%253a09%253a18Z%26wreply%3dhttps%253a%252f%252fstudyinsaudi.moe.gov.sa%252f&wa=wsignin1.0&wtrealm=https%3a%2f%2fstudyinsaudi.moe.gov.sa%2f&wctx=rm%3d1%26id%3d4d20cb75-7da1-481c-ae6d-1164443539c6%26ru%3d%252fFederation%252fMIPMIMSignIn&wct=2025-03-21T16%3a09%3a18Z&wreply=https%3a%2f%2fstudyinsaudi.moe.gov.sa%2f" class="btn1">
-                        Log In
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="img-box">
-                    <img src="A111.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ol class="carousel-indicators">
-          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-          <li data-target="#customCarousel1" data-slide-to="1"></li>
-          <li data-target="#customCarousel1" data-slide-to="2"></li>
-        </ol>
-      </div>
 
-    </section>
-    <!-- end slider section -->
-  </div>
+    <div class="panel">
+      <div class="grid">
+        <!-- Repeat tiles as needed. Replace the href and img src with your own images. -->
+        <figure class="tile">
+          <a href="#img1" aria-labelledby="cap1">
+            <img src="0ca2345e-b883-43ae-80c1-f7542900207e.jpg" alt="Sunrise over misty mountains">
+          </a>
+          <figcaption class="cap" id="cap1">
+            Sunrise Peaks <small>Alpine Light</small>
+          </figcaption>
+        </figure>
 
+        <figure class="tile">
+          <a href="#img2" aria-labelledby="cap2">
+            <img src="be1a5246f60b31223c5185bf47a7d977.jpg" alt="Waves rolling on a beach at dusk">
+          </a>
+          <figcaption class="cap" id="cap2">
+            Dusk Tide <small>Coastal Calm</small>
+          </figcaption>
+        </figure>
 
-  <!-- service section -->
+        <figure class="tile">
+          <a href="#img3" aria-labelledby="cap3">
+            <img src="ab44f59f4389d2538110db78b9b99004.jpg" alt="City skyline with lights at night">
+          </a>
+          <figcaption class="cap" id="cap3">
+            Night Grid <small>Urban Glow</small>
+          </figcaption>
+        </figure>
 
- 
-  
+        <figure class="tile">
+          <a href="#img4" aria-labelledby="cap4">
+            <img src="d53ffbe9-f70e-4b96-a166-934f3ca91b08.jpg" alt="Cactus in desert under blue sky">
+          </a>
+          <figcaption class="cap" id="cap4">
+            Desert Form <small>Saguaro</small>
+          </figcaption>
+        </figure>
 
-  <!-- team section -->
-  <section class="team_section layout_padding">
-    <div class="container-fluid">
-      <div class="heading_container heading_center">
-        <h2 class="">
-          আবেদনের <span> শর্ত:</span>
-        </h2>
-        <p>প্রয়োজনীয় কাগজপত্র থাকতে হবে এবং বয়স সর্বনিম্ন ১৭ হতে হবে।</p>
-      </div>
+        <figure class="tile">
+          <a href="#img5" aria-labelledby="cap5">
+            <img src="6ec7dcdf-e261-4729-b2c2-0296bbe32eba.jpg" alt="Aurora across a starry night sky">
+          </a>
+          <figcaption class="cap" id="cap5">
+            Polar Veil <small>Aurora</small>
+          </figcaption>
+        </figure>
 
-      <div class="team_container">
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
-            <div class="box ">
-              <div class="img-box">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  যে সমস্ত কাগজপত্র আবশ্যক:
-                </h5>
-                <p>
-
-                  ১.  পাসপোর্ট।<br>
-                  ২. পুলিশ ক্লিয়ারেন্স সার্টিফিকেট।<br>
-                  ৩. মেডিকেল সার্টিফিকেট।<br>
-                  ৪. সানাবিয়া/আলিম/এইচএসসি সার্টিফিকেট ও মার্কশীট।<br>
-                  ৫. সিভি।<br>
-                  ৬. তাযকিয়া তথা রিকমেন্ডেশন লেটার।<br>
-                  ৩. ব্যক্তিগত পাসপোর্ট সাইজের ছবি। <br>
-                  বি. দ্র.: যাদের মূল কাগজপত্র আরবি রয়েছে, তাদের কাগজপত্র আরবি অনুবাদ করার কোন প্রয়োজন নেই।
-              </p>
-              </div>
-              
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <div class="box ">
-              <div class="img-box">
-              </div>
-              <div class="detail-box">
-                <p style="color: rgb(13, 248, 24);">
-                  এছাড়াও অতিরিক্ত হিসেবে other অপশনে বিভিন্ন সার্টিফিকেট এড করা যায়।
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end team section -->
-
-
-  <!-- client section -->
-
-  <section class="client_section layout_padding" id="university">
-    <div class="container">
-      <div class="heading_container heading_center psudo_white_primary mb_45">
-        <h2>
-          সৌদি আরবের বিশ্ববিদ্যালয়গুলোর কিছু গুরুত্বপূর্ণ <span>বৈশিষ্ট্য:</span>
-        </h2>
-      </div>
-      <div class="carousel-wrap ">
-        <div class="owl-carousel client_owl-carousel">
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <div class="client_id">
-                  <div class="client_info">
-                    <h6>
-                      ১. উচ্চমানের শিক্ষা ও গবেষণা:
-                    </h6>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-                <p>
-                  বিশ্বমানের শিক্ষা ও গবেষণা সুবিধা রয়েছে, বিশেষ করে বিজ্ঞান, প্রকৌশল, চিকিৎসা ও ইসলামিক স্টাডিজে। কৃত্রিম বুদ্ধিমত্তা (AI), রোবোটিক্স এবং নবায়নযোগ্য শক্তির ওপর গবেষণায় গুরুত্ব দেওয়া হয়। </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <div class="client_id">
-                  <div class="client_info">
-                    <h6>
-                      ২. বিশ্বমানের বিশ্ববিদ্যালয়:
-
-                    </h6>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-                <p>
-                  কিং আবদুলআজিজ ইউনিভার্সিটি (KAU), কিং ফাহদ ইউনিভার্সিটি অব পেট্রোলিয়াম অ্যান্ড মিনারেলস (KFUPM) এবং কিং সউদ ইউনিভার্সিটি (KSU) আন্তর্জাতিকভাবে স্বীকৃত। - কিং আবদুল্লাহ ইউনিভার্সিটি অব সায়েন্স অ্যান্ড টেকনোলজি (KAUST) বিশ্বব্যাপী গবেষণা প্রতিষ্ঠান হিসেবে পরিচিত।
- </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <div class="client_id">
-                  <div class="client_info">
-                    <h6>
-                      ৩. ইসলামিক স্টাডিজ ও আরবি ভাষা শিক্ষা:
-                    </h6>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-                <p>
-                  ইসলামিক শিক্ষা ও কোরআন গবেষণার জন্য বিশেষায়িত বিশ্ববিদ্যালয় রয়েছে, যেমন ইসলামিক ইউনিভার্সিটি অব মদিনা। বিদেশি শিক্ষার্থীদের জন্য আরবি ভাষা শিক্ষা কোর্সও প্রদান করা হয়।
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <div class="client_id">
-                  <div class="client_info">
-                    <h6>
-                      ৪. বৃত্তি ও আন্তর্জাতিক শিক্ষার্থী:
-                    </h6>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-                <p>
-                  বিদেশি শিক্ষার্থীদের জন্য বিভিন্ন সরকারি ও বেসরকারি বৃত্তির সুযোগ রয়েছে, যেমন কিংডম অফ সৌদি অ্যারাবিয়া স্কলারশিপ প্রোগ্রাম। অনেক বিশ্ববিদ্যালয়ে বিনামূল্যে পড়ার সুযোগ, আবাসন ও মাসিক ভাতা প্রদান করা হয়। </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <div class="client_id">
-                  <div class="client_info">
-                    <h6>
-                      ৫. উন্নত প্রযুক্তি ও আধুনিক ক্যাম্পাস:
-                    </h6>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-                <p>অধিকাংশ বিশ্ববিদ্যালয়ে স্মার্ট ক্লাসরুম, গবেষণাগার, এবং ডিজিটাল লাইব্রেরি রয়েছে। শিক্ষার্থীদের জন্য অত্যাধুনিক আবাসন ও অবকাঠামো প্রদান করা হয়।
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <div class="client_id">
-                  <div class="client_info">
-                    <h6>
-                      ৬. শক্তিশালী শিল্প ও গবেষণা সংযোগ:
-                    </h6>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-               <p>পেট্রোলিয়াম, প্রকৌশল ও তথ্যপ্রযুক্তি খাতে গবেষণার জন্য বিভিন্ন প্রতিষ্ঠান ও কর্পোরেট সংস্থার সাথে সহযোগিতা করা হয়। আন্তর্জাতিক প্রতিষ্ঠানগুলোর সঙ্গে যৌথ গবেষণা ও উদ্ভাবনের সুযোগ রয়েছে।</p>>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="detail-box">
-                <div class="client_id">
-                  <div class="client_info">
-                    <h6>
-                      ৭. নারী শিক্ষার প্রসার:
-                    </h6>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-                <p>সাম্প্রতিক বছরগুলোতে নারী শিক্ষার উপর ব্যাপক গুরুত্ব দেওয়া হয়েছে। প্রিন্সেস নোরা বিন্ত আবদুররহমান ইউনিভার্সিটি (PNU) বিশ্বের অন্যতম বৃহত্তম নারীদের জন্য বিশেষায়িত বিশ্ববিদ্যালয়।
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- end client section -->
-
-<!-- about section -->
-
-<section class="about_section layout_padding">
-  <div class="container  ">
-    <div class="heading_container heading_center">
-      <h2>
-        আমাদের  <span>সেবা সমূহ:</span>
-      </h2>
-      <p>
-        আমরা বাংলাদেশে অবস্থানরত ছাত্রদেরকে সরাসরি মদীনা ইসলামী বিশ্ববিদ্যালয় থেকে বিভিন্ন ধরনের সেবা ও দিক নির্দেশনা দিয়ে থাকি। যাতে করে তারা সঠিক গাইডলাইন পেয়ে সৌদি আরবের বিশ্ববিদ্যালয়গুলোতে  আবেদন করতে পারে।      </p>
-    </div>
-    <div class="row">
-      <div class="col-md-6 ">
-        <div class="img-box">
-          <img src="A114.jpg" alt="">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="detail-box">
-          <h3>
-           
-          </h3>
-          <p>
-          আপনি আমাদের মাধ্যমে ১০০% নির্ভুলভাবে আবেদন করিয়ে নিতে পারবেন। আপনার সব ডকুমেন্ট রেডি থাকলে আপনার আবেদনটি আমরা সর্বোচ্চ গুরুত্ব দিয়ে কমপ্লিট করে দেব ইনশাআল্লাহ। এছাড়াও বাংলাদেশে আবেদনের জন্য বর্তমানে অনেক আবেদন সেন্টার রয়েছে, তাদের মাধ্যমেও করাতে পারেন অথবা নিজেই নিজের আবেদন করতে পারেন। নির্ভুল হলেই চলবে।
-          </p><br>
- <div>
-  <h5>আমাদের মাধ্যমে আবেদন করাতে এখানে আপনার তথ্য আপলোড করুন:</h5>
-  <p>নিচের বাটনে ক্লিক করুন</p>
-  <!-- Paste the Google Form link here -->
-  <a class="form-link" href="https://forms.gle/C5cf3gpHvkHsQ6wf7" target="_blank">Click here</a>
-</div>
-        </div>
+        <figure class="tile">
+          <a href="#img6" aria-labelledby="cap6">
+            <img src="0ca2345e-b883-43ae-80c1-f7542900207e.jpg" alt="Forest trail with sunlight rays">
+          </a>
+          <figcaption class="cap" id="cap6">
+            Green Room <small>Forest Light</small>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
-</section>
 
-<!-- end about section -->
- 
-  <!-- info section -->
-  <!-- info section -->
-
-  <section class="info_section layout_padding2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-lg-3 info_col">
-          <div class="info_contact">
-            <h4>
-              Address
-            </h4>
-            <div class="contact_link_box">
-              <a href="https://maps.app.goo.gl/miCPnXZFmLQSPnBg7">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
-                  Location
-                </span>
-              </a>
-  
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  scholarship2025@tensi.org
-                </span>
-              </a>
-              <a href=""> <p style="color: #06fd75;">
-           <p> আবেদন সংক্রান্ত যেকোনো প্রশ্নের উত্তর জানতে নিচে থাকা whatsapp  বাটনে ক্লিক করুন। </p>
-          <!-- WhatsApp Icon Link -->
-    <a href="https://wa.me/966538579614" target="_blank">
-      <div class="whatsapp-icon"></div> </a>
-            </div>
-          </div>
-        </div>
+  <!-- Lightbox targets (duplicate only the large image + a small info bar) -->
+  <div id="img1" class="lightbox" aria-modal="true" role="dialog">
+    <div class="lb-card">
+      <img src="5df2cf842e181ef9967943f934bc39e3.jpg" alt="Sunrise over misty mountains enlarged">
+      <div class="lb-bar">
+        <span>Sunrise Peaks — Alpine Light</span>
+        <a class="close" href="#" aria-label="Close">Close</a>
       </div>
     </div>
-  </section>
-  <!-- end info section -->
+  </div>
 
-   
-  <!-- footer section -->
-  <section class="footer_section">
-    <div class="container">
-      <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved By Website Designer and developer
-      </p>
+  <div id="img2" class="lightbox" aria-modal="true" role="dialog">
+    <div class="lb-card">
+      <img src="4e10597d67c853f77eb06ff8fec39cb7.jpg" alt="Waves at dusk enlarged">
+      <div class="lb-bar">
+        <span>Dusk Tide — Coastal Calm</span>
+        <a class="close" href="#" aria-label="Close">Close</a>
+      </div>
     </div>
-  </section>
-  <!-- footer section -->
+  </div>
 
-  <!-- jQery -->
-  <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-  <!-- popper js -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="bootstrap.js"></script>
-  <!-- owl slider -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-  </script>
-  <!-- custom js -->
-  <script type="text/javascript" src="custom.js"></script>
-  <!-- Google Map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-  </script>
-  <!-- End Google Map -->
+  <div id="img3" class="lightbox" aria-modal="true" role="dialog">
+    <div class="lb-card">
+      <img src="d53ffbe9-f70e-4b96-a166-934f3ca91b08.jpg" alt="City skyline enlarged">
+      <div class="lb-bar">
+        <span>Night Grid — Urban Glow</span>
+        <a class="close" href="#" aria-label="Close">Close</a>
+      </div>
+    </div>
+  </div>
 
+  <div id="img4" class="lightbox" aria-modal="true" role="dialog">
+    <div class="lb-card">
+      <img src="6ec7dcdf-e261-4729-b2c2-0296bbe32eba.jpg" alt="Desert cactus enlarged">
+      <div class="lb-bar">
+        <span>Desert Form — Saguaro</span>
+        <a class="close" href="#" aria-label="Close">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="img5" class="lightbox" aria-modal="true" role="dialog">
+    <div class="lb-card">
+      <img src="008b7166d3240eae35a3f159829eb9bb.jpg" alt="Aurora enlarged">
+      <div class="lb-bar">
+        <span>Polar Veil — Aurora</span>
+        <a class="close" href="#" aria-label="Close">Close</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="img6" class="lightbox" aria-modal="true" role="dialog">
+    <div class="lb-card">
+      <img src="22ed30d88933dcf8ff60ef69fc36b733.jpg" alt="Forest trail enlarged">
+      <div class="lb-bar">
+        <span>Green Room — Forest Light</span>
+        <a class="close" href="#" aria-label="Close">Close</a>
+      </div>
+    </div>
+  </div>
 </body>
-
 </html>
-
-
