@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>আর্টিকেলস — عطاء الرحمن راقب</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f16; --ink:#eaf2ff; --muted:#9fb0d5;
+    --accent1:#7ddcff; --accent2:#9dffb4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#0b0f16;color:#eaf2ff;font-family:Poppins,ui-sans-serif,system-ui;}
+  .navbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:linear-gradient(180deg,rgba(11,15,22,.96),rgba(11,15,22,.65));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08);}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(90deg,#7ddcff,#9dffb4);box-shadow:0 0 16px rgba(125,220,255,.8);}
+  .title{margin:0;font-size:1.2rem;background:linear-gradient(90deg,#7ddcff,#9dffb4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .btn{ text-decoration:none; color:#0b0f16; font-weight:700; padding:10px 14px; border-radius:12px;
+        background:linear-gradient(90deg,#7ddcff,#9dffb4); }
+  .section{max-width:1000px;margin:30px auto;padding:0 16px;}
+  .head{font-size:1.5rem;margin-bottom:10px;background:linear-gradient(90deg,#7ddcff,#9dffb4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .sub{color:#9fb0d5;margin:0 0 14px}
+  .articles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .article{position:relative;background:var(--c-bg,rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;color:var(--c-ink,#eaf2ff)}
+  .article:hover{ transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.45); border-color:rgba(255,255,255,.22);}
+  .article h3{margin:0 0 6px;font-size:1.05rem;color:var(--c-ink-strong,#fff)}
+  .ayat{direction:rtl;text-align:right;line-height:1.6;margin:.3rem 0 .5rem;color:var(--c-ink-strong,#fff)}
+  .bn{color:var(--c-ink,#dfe8ff)}
+  .cite{color:var(--c-ink-soft,#cfe0ff);font-size:.9rem}
+  /* rotating palette (10-colors) */
+  .articles .article:nth-child(10n+1){--c-bg:linear-gradient(135deg,#0e2647,#11538a);--c-ink:#e8f6ff;--c-ink-strong:#fff;--c-ink-soft:#c8e6ff}
+  .articles .article:nth-child(10n+2){--c-bg:linear-gradient(135deg,#1d1b3f,#3f3aa0);--c-ink:#efeaff;--c-ink-strong:#fff;--c-ink-soft:#d8d0ff}
+  .articles .article:nth-child(10n+3){--c-bg:linear-gradient(135deg,#0f3a2b,#1d7a58);--c-ink:#e6fff6;--c-ink-strong:#fff;--c-ink-soft:#c9ffe8}
+  .articles .article:nth-child(10n+4){--c-bg:linear-gradient(135deg,#3b1322,#8a1f49);--c-ink:#ffe7f0;--c-ink-strong:#fff;--c-ink-soft:#ffd1e2}
+  .articles .article:nth-child(10n+5){--c-bg:linear-gradient(135deg,#33200b,#7a551b);--c-ink:#fff4de;--c-ink-strong:#fff;--c-ink-soft:#ffe3b0}
+  .articles .article:nth-child(10n+6){--c-bg:linear-gradient(135deg,#0f2631,#17729a);--c-ink:#e9fbff;--c-ink-strong:#fff;--c-ink-soft:#c9f1ff}
+  .articles .article:nth-child(10n+7){--c-bg:linear-gradient(135deg,#11220f,#2e6c27);--c-ink:#edffe8;--c-ink-strong:#fff;--c-ink-soft:#d7ffd0}
+  .articles .article:nth-child(10n+8){--c-bg:linear-gradient(135deg,#2a0f2f,#6d2480);--c-ink:#ffeaff;--c-ink-strong:#fff;--c-ink-soft:#ffcdfd}
+  .articles .article:nth-child(10n+9){--c-bg:linear-gradient(135deg,#1f2a3a,#314e7d);--c-ink:#eaf2ff;--c-ink-strong:#fff;--c-ink-soft:#d2e2ff}
+  .articles .article:nth-child(10n+10){--c-bg:linear-gradient(135deg,#2b1a18,#6f392d);--c-ink:#ffebe7;--c-ink-strong:#fff;--c-ink-soft:#ffd7d0}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="brand"><span class="dot"></span><h1 class="title"> عطاء الرحمن </h1></div>
+  <div>
+    <a class="btn" href="qa.html">প্রশ্নোত্তর</a>
+    <a class="btn" href="articles.html">আর্টিকেলস</a>
+    <a href="index.html">Manu</a>
+  </div>
+</nav>
+
+<section class="section">
+  <h2 class="head">আর্টিকেলস (৫০)</h2>
+  <p class="sub">আরবি দলিল + ২–৩ লাইনের সারাংশ।</p>
+
+  <div class="articles">
+    <article class="article">
+      <h3>১) তাওহীদ: এক আল্লাহর ইবাদত</h3>
+      <p class="ayat">﴿وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ﴾</p>
+      <p class="bn">ইবাদত, দোয়া, ভালোবাসা, ভয়—সব শুধু আল্লাহর জন্য হওয়া একান্ত অপরিহার্য। শির্ক মুক্ত আকিদাই নাজাতের পথ।</p>
+      <p class="cite">ইসরা ২৩</p>
+    </article>
+    <article class="article">
+      <h3>২) সুন্নাহ অনুসরণের আবশ্যকতা</h3>
+      <p class="ayat">«عَلَيْكُمْ بِسُنَّتِي»</p>
+      <p class="bn">রাসূল ﷺ এর সুন্নাহই কুরআনের বাস্তব ব্যাখ্যা। দীন বুঝতে ও আমলে সুন্নাহ মানা আবশ্যক।</p>
+      <p class="cite">তিরমিজি</p>
+    </article>
+    <article class="article">
+      <h3>৩) সালাত: দ্বীনের স্তম্ভ</h3>
+      <p class="ayat">﴿وَأَقِيمُوا الصَّلَاةَ﴾</p>
+      <p class="bn">সালাত দীনকে প্রতিষ্ঠা করে; সময়মতো, খুশু–খুযু নিয়ে পড়া ঈমানের প্রাণ।</p>
+      <p class="cite">কুরআন ও হাদিস</p>
+    </article>
+    <article class="article">
+      <h3>৪) যাকাত: সম্পদের পবিত্রতা</h3>
+      <p class="ayat">﴿خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً﴾</p>
+      <p class="bn">নিসাবপূর্ণ সম্পদে নির্ধারিত অংশ আদায় করলে সম্পদ পবিত্র হয় এবং দরিদ্রের হক পূরণ হয়।</p>
+      <p class="cite">তাওবা ১০৩</p>
+    </article>
+    <article class="article">
+      <h3>৫) রোজা ও তাকওয়া</h3>
+      <p class="ayat">﴿لَعَلَّكُمْ تَتَّقُونَ﴾</p>
+      <p class="bn">রোজা কেবল ক্ষুধা–তৃষ্ণা নয়; জিহ্বা, দৃষ্টি ও আচরণ সংযম করে তাকওয়া অর্জনের পথ।</p>
+      <p class="cite">বাকারাহ ১৮৩</p>
+    </article>
+    <article class="article">
+      <h3>৬) হজ: ইবরাহিমি মিল্লাতের শিক্ষা</h3>
+      <p class="ayat">﴿حِجُّ الْبَيْتِ﴾</p>
+      <p class="bn">সামর্থ্যবানদের জন্য জীবনে একবার ফরজ; ত্যাগ, একতা ও তাকওয়ার মহান পাঠ।</p>
+      <p class="cite">আলে-ইমরান ৯৭</p>
+    </article>
+    <article class="article">
+      <h3>৭) আল্লাহর স্মরণ ও প্রশান্তি</h3>
+      <p class="ayat">﴿أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ﴾</p>
+      <p class="bn">জিকির, তিলাওয়াত, দোয়া—হৃদয়কে মুমিনসুলভ প্রশান্তি দেয়; গাফিলতিতে অশান্তি বাড়ে।</p>
+      <p class="cite">রা’দ ২৮</p>
+    </article>
+    <article class="article">
+      <h3>৮) কদর রাতের ফজিলত</h3>
+      <p class="ayat">﴿لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ﴾</p>
+      <p class="bn">এক রাতের ইবাদত ৮৩ বছরেরও বেশি—মাগফিরাত ও নাজাতের সুবর্ণ সুযোগ।</p>
+      <p class="cite">সূরা আল-কদর</p>
+    </article>
+    <article class="article">
+      <h3>৯) রিবা (সুদ) থেকে মুক্ত অর্থনীতি</h3>
+      <p class="ayat">﴿وَحَرَّمَ الرِّبَا﴾</p>
+      <p class="bn">রিবা সমাজে জুলুম ও বঞ্চনা বাড়ায়; হালাল বাণিজ্য ও শরিয়াহভিত্তিক ফাইন্যান্স ন্যায্য সমাধান।</p>
+      <p class="cite">বাকারাহ ২৭৫</p>
+    </article>
+    <article class="article">
+      <h3>১০) সত্যবাদিতা ও আমানতদারি</h3>
+      <p class="ayat">«إنَّ الصدقَ يهدي إلى البرِّ»</p>
+      <p class="bn">সত্য মানুষকে সৎকর্মে নিয়ে যায়; আমানত রক্ষা সমাজে আস্থা গড়ে।</p>
+      <p class="cite">বুখারি/মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>১১) পর্দা ও লজ্জাশীলতা</h3>
+      <p class="ayat">﴿وَلْيَضْرِبْنَ بِخُمُرِهِنَّ عَلَىٰ جُيُوبِهِنَّ﴾</p>
+      <p class="bn">লজ্জাশীলতা ঈমানের শাখা; কুরআনী পর্দা সামাজিক পবিত্রতা রক্ষা করে।</p>
+      <p class="cite">নূর ৩১</p>
+    </article>
+    <article class="article">
+      <h3>১২) কুরআন—হেদায়াতের বই</h3>
+      <p class="ayat">﴿هُدًى لِّلْمُتَّقِينَ﴾</p>
+      <p class="bn">তিলাওয়াত, তাদাব্বুর, তিলাওয়াতানুসারে আমল—জীবন বদলায়।</p>
+      <p class="cite">বাকারাহ ২</p>
+    </article>
+    <article class="article">
+      <h3>১৩) দোয়ার আদব</h3>
+      <p class="ayat">«ادْعُوا رَبَّكُمْ تَضَرُّعًا وَخُفْيَةً»</p>
+      <p class="bn">দোয়া বিনয়, আশা ও ভয় মিশ্রিত; হালাল রিযিক দোয়া কবুলে সহায়।</p>
+      <p class="cite">আরাফ ৫৫</p>
+    </article>
+    <article class="article">
+      <h3>১৪) ন্যায়বিচার সর্বত্র</h3>
+      <p class="ayat">﴿ٱعْدِلُوا هُوَ أَقْرَبُ لِلتَّقْوَى﴾</p>
+      <p class="bn">আদালতে, ব্যবসায়, পরিবারে—সবখানেই ন্যায় স্থাপন করা তাকওয়ার নিকটতর।</p>
+      <p class="cite">মায়েদা ৮</p>
+    </article>
+    <article class="article">
+      <h3>১৫) গীবত ও অপবাদ</h3>
+      <p class="ayat">﴿وَلَا يَغْتَب بَّعْضُكُم بَعْضًا﴾</p>
+      <p class="bn">গীবত মৃত ভাইয়ের মাংস খাওয়ার মত; সমাজে ঘৃণা ছড়ায়—কঠোরভাবে বর্জনীয়।</p>
+      <p class="cite">হুজুরাত ১২</p>
+    </article>
+    <article class="article">
+      <h3>১৬) পিতামাতার হক</h3>
+      <p class="ayat">﴿وَبِالْوَالِدَيْنِ إِحْسَانًا﴾</p>
+      <p class="bn">মাতাপিতার প্রতি কৃতজ্ঞতা ও সদাচরণ জান্নাতের পথ সহজ করে।</p>
+      <p class="cite">ইসরা ২৩</p>
+    </article>
+    <article class="article">
+      <h3>১৭) আত্মীয়তা রক্ষা</h3>
+      <p class="ayat">«فَلْيَصِلْ رَحِمَهُ»</p>
+      <p class="bn">রিযিকের প্রসার ও আয়ুর বরকতের উপায়—আত্মীয়তার সম্পর্ক জোরদার করা।</p>
+      <p class="cite">বুখারি</p>
+    </article>
+    <article class="article">
+      <h3>১৮) জ্ঞান অর্জনের ফজিলত</h3>
+      <p class="ayat">«مَن سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا…»</p>
+      <p class="bn">উপকারী জ্ঞান অর্জন ফজিলতপূর্ণ; নিয়ত ও আদব ঠিক রাখা জরুরি।</p>
+      <p class="cite">মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>১৯) সহনশীলতা ও রাগ নিয়ন্ত্রণ</h3>
+      <p class="ayat">«لا تَغْضَبْ»</p>
+      <p class="bn">রাগ সংযম ইমানের সৌন্দর্য; অযু, আসন পরিবর্তন, নীরব থাকা—উপযোগী সুন্নাহ।</p>
+      <p class="cite">বুখারি</p>
+    </article>
+    <article class="article">
+      <h3>২০) সত্যবাদিতা বনাম মিথ্যা</h3>
+      <p class="ayat">«إنَّ الكذبَ يهدي إلى الفجورِ»</p>
+      <p class="bn">মিথ্যা পাপের দিকে ধাবিত করে; সত্যই নাজাতের পথ।</p>
+      <p class="cite">বুখারি/মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>২১) নাফল আমল ও ইখলাস</h3>
+      <p class="ayat">«وما تقرَّب إليَّ عبدي بشيءٍ أحبَّ إليَّ مما افترضتُه…»</p>
+      <p class="bn">ফরজ পরে নাফল দ্বারা নৈকট্য বৃদ্ধি পায়; ইখলাস থাকলে আমল গ্রহণযোগ্য।</p>
+      <p class="cite">বুখারি</p>
+    </article>
+    <article class="article">
+      <h3>২২) হালাল রিযিক ও দোয়া</h3>
+      <p class="ayat">«إنَّ اللهَ طيِّبٌ لا يقبلُ إلا طيِّبًا»</p>
+      <p class="bn">হালাল উপার্জন দোয়া কবুলের মৌলিক শর্ত; হারাম রিযিক আধ্যাত্মিকতা নষ্ট করে।</p>
+      <p class="cite">মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>২৩) আমানত ও চুক্তি</h3>
+      <p class="ayat">﴿يَا أَيُّهَا الَّذِينَ آمَنُوا أَوْفُوا بِالْعُقُودِ﴾</p>
+      <p class="bn">চুক্তি ও দায়িত্বপালন সামাজিক আস্থার ভিত্তি।</p>
+      <p class="cite">মায়েদা ১</p>
+    </article>
+    <article class="article">
+      <h3>২৪) প্রতিবেশীর হক</h3>
+      <p class="ayat">«ما زال جبريلُ يوصيني بالجارِ…»</p>
+      <p class="bn">প্রতিবেশীর সাথে সদাচরণ ঈমানের অংশ; কষ্ট দেওয়া হারাম।</p>
+      <p class="cite">বুখারি</p>
+    </article>
+    <article class="article">
+      <h3>২৫) অনাথের অধিকার</h3>
+      <p class="ayat">﴿فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ﴾</p>
+      <p class="bn">অনাথের সম্পদ ও অধিকার রক্ষা করা ইমানদার সমাজের দায়িত্ব।</p>
+      <p class="cite">দুহা ৯</p>
+    </article>
+    <article class="article">
+      <h3>২৬) দান-সদকা ও বরকত</h3>
+      <p class="ayat">«ما نقص مالٌ من صدقةٍ»</p>
+      <p class="bn">দান করলে সম্পদ কমে না, বরং বরকত বাড়ে—গোপনে দান উত্তম।</p>
+      <p class="cite">মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>২৭) হারাম খাদ্য থেকে বিরত</h3>
+      <p class="ayat">﴿حُرِّمَتْ عَلَيْكُمُ الْمَيْتَةُ وَالدَّمُ وَلَحْمُ الْخِنزِيرِ﴾</p>
+      <p class="bn">হারাম খাদ্য আত্মিক ও শারীরিক ক্ষতির কারণ—বর্জনীয়।</p>
+      <p class="cite">মায়েদা ৩; বাকারাহ ১৭৩</p>
+    </article>
+    <article class="article">
+      <h3>২৮) তাকওয়া ও সফলতা</h3>
+      <p class="ayat">﴿وَمَن يَتَّقِ ٱللَّهَ يَجْعَل لَّهُ مَخْرَجًا﴾</p>
+      <p class="bn">তাকওয়া দুনিয়া–আখেরাতে মুক্তির পথ উন্মোচন করে; রিযিকও দেয় অপ্রত্যাশিত দিক থেকে।</p>
+      <p class="cite">তালাক ২-৩</p>
+    </article>
+    <article class="article">
+      <h3>২৯) দুনিয়া বনাম আখেরাত</h3>
+      <p class="ayat">﴿وَمَا الْحَيَاةُ الدُّنْيَا ইলَّا مَتَاعُ الْغُرُورِ﴾</p>
+      <p class="bn">দুনিয়া প্রতারক ভোগ; আখেরাতই স্থায়ী—সেই প্রস্তুতি জরুরি।</p>
+      <p class="cite">আলে-ইমরান ১৮৫</p>
+    </article>
+    <article class="article">
+      <h3>৩০) শেষ নবী ﷺ-কে ভালোবাসা</h3>
+      <p class="ayat">«لا يؤمنُ أحدُكم حتى أكونَ أحبَّ إليه…»</p>
+      <p class="bn">রাসূল ﷺ-কে সর্বাধিক ভালোবাসা—ঈমানের পরিপূর্ণতার শর্ত।</p>
+      <p class="cite">বুখারি</p>
+    </article>
+    <article class="article">
+      <h3>৩১) কুরআন-সুন্নাহর ঐক্য</h3>
+      <p class="ayat">﴿وَاعْتَصِمُوا بِحَبْلِ ٱللَّهِ جَمِيعًا﴾</p>
+      <p class="bn">আল্লাহর রশি (কুরআন) আঁকড়ে ঐক্য—বিভাজন নয়।</p>
+      <p class="cite">আলে-ইমরান ১০৩</p>
+    </article>
+    <article class="article">
+      <h3>৩২) আল্লাহর পথে ব্যয়</h3>
+      <p class="ayat">﴿مَثَلُ الَّذِينَ يُنفِقُونَ أَمْوَالَهُمْ…﴾</p>
+      <p class="bn">সাতশ গুণ পর্যন্ত প্রতিদান—নিয়ত হতে হবে খাঁটি।</p>
+      <p class="cite">বাকারাহ ২৬১</p>
+    </article>
+    <article class="article">
+      <h3>৩৩) সৎ উপদেশ (নসিহাহ)</h3>
+      <p class="ayat">«الدِّينُ النَّصِيحَةُ»</p>
+      <p class="bn">আল্লাহ, কিতাব, রাসূল, মুসলিম নেতৃবৃন্দ ও সাধারণ মুসলিমদের প্রতি সদুপদেশ—দীনের অংশ।</p>
+      <p class="cite">মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>৩৪) সহনশীলতা ও ক্ষমাশীলতা</h3>
+      <p class="ayat">﴿وَلْيَعْفُوا وَلْيَصْفَحُوا﴾</p>
+      <p class="bn">ক্ষমা করলে আল্লাহও ক্ষমা করেন—সমাজে মহব্বত বাড়ে।</p>
+      <p class="cite">নূর ২২</p>
+    </article>
+    <article class="article">
+      <h3>৩৫) আমল গ্রহণযোগ্যতার শর্ত</h3>
+      <p class="ayat">﴿لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا﴾</p>
+      <p class="bn">ইখলাস ও সুন্নাহ অনুযায়ী আমলই গ্রহণযোগ্য।</p>
+      <p class="cite">হুদ ৭ (মর্মার্থ)</p>
+    </article>
+    <article class="article">
+      <h3>৩৬) পবিত্রতা (তাহারাত)</h3>
+      <p class="ayat">«الطُّهُورُ شَطْرُ الإِيمَانِ»</p>
+      <p class="bn">অজু/গোসল/পোশাক-পবিত্রতা ইবাদতের পূর্বশর্ত; পরিচ্ছন্নতা ঈমানের অর্ধেক।</p>
+      <p class="cite">মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>৩৭) কবর জিয়ারত</h3>
+      <p class="ayat">«فَزُورُوهَا»</p>
+      <p class="bn">মৃত্যুচিন্তা জাগে; দুনিয়ার লোভ কমে—সুন্নত জিয়ারত।</p>
+      <p class="cite">মুসলিম</p>
+    </article>
+    <article class="article">
+      <h3>৩৮) কাজ ও ইবাদতের সমন্বয়</h3>
+      <p class="ayat">﴿هُوَ ٱلَّذِي جَعَلَ لَكُمُ ٱلْأَرْضَ ذَلُولًا﴾</p>
+      <p class="bn">হালাল রুজি অন্বেষণও ইবাদত—নিয়ত ঠিক হলে।</p>
+      <p class="cite">মুল্‌ক ১৫</p>
+    </article>
+    <article class="article">
+      <h3>৩৯) সন্তান প্রতিপালন</h3>
+      <p class="ayat">﴿قُوا أَنفُسَكُمْ وَأَهْلِيكُمْ نَارًا﴾</p>
+      <p class="bn">তাদের আকিদা–আখলাক–ইবাদতে শিক্ষিত করা অভিভাবকের দায়িত্ব।</p>
+      <p class="cite">তাহরিম ৬</p>
+    </article>
+    <article class="article">
+      <h3>৪০) নফস ও শয়তানে জিহাদ</h3>
+      <p class="ayat">﴿إِنَّ النَّفْسَ لَأَمَّارَةٌ بِالسُّوءِ﴾</p>
+      <p class="bn">আত্মশুদ্ধি, জিকির, সৎসঙ্গ—পাপপ্রবণ নফস দমন করার উপায়।</p>
+      <p class="cite">ইউসুফ ৫৩</p>
+    </article>
+    <article class="article">
+      <h3>৪১) সময়ের হক</h3>
+      <p class="ayat">﴿وَالْعَصْرِ﴾</p>
+      <p class="bn">সময় নষ্ট করা ক্ষতি; ঈমান, সৎকর্ম, হক ও সবরের দাওয়াতই সফলতার পথ।</p>
+      <p class="cite">আসর (সুরা)</p>
+    </article>
+    <article class="article">
+      <h3>৪২) হারাম দৃষ্টি থেকে সংযম</h3>
+      <p class="ayat">﴿قُل لِّلْمُؤْمِنِينَ يَغُضُّوا مِنْ أَبْصَارِهِمْ﴾</p>
+      <p class="bn">দৃষ্টির হিফাজত ব্যভিচারের পথ রুদ্ধ করে; অন্তর পবিত্র থাকে।</p>
+      <p class="cite">নূর ৩০</p>
+    </article>
+    <article class="article">
+      <h3>৪৩) হাসিমুখ ও ভালো আচরণ</h3>
+      <p class="ayat">«تبسُّمُك في وجهِ أخيكَ صدقةٌ»</p>
+      <p class="bn">সামান্য হাসিমুখও সদকা—সম্পর্কে উষ্ণতা আনে।</p>
+      <p class="cite">তিরমিজি</p>
+    </article>
+    <article class="article">
+      <h3>৪৪) ভ্রাতৃত্ব ও ঐক্য</h3>
+      <p class="ayat">﴿إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ﴾</p>
+      <p class="bn">মুমিনগণ পরস্পর ভাই—কলহ নয়, মিলন ও সহমর্মিতা।</p>
+      <p class="cite">হুজুরাত ১০</p>
+    </article>
+    <article class="article">
+      <h3>৪৫) অপচয় বর্জন ও সংযম</h3>
+      <p class="ayat">﴿وَلَا تُبَذِّرْ تَبْذِيرًا﴾</p>
+      <p class="bn">অতিরিক্ত অপচয় ও প্রদর্শন বর্জনীয়; পরিচ্ছন্নতা ও সংযম প্রশংসনীয়।</p>
+      <p class="cite">ইসরা ২৬-২৭</p>
+    </article>
+    <article class="article">
+      <h3>৪৬) মজুরের হক</h3>
+      <p class="ayat">«أعطوا الأجيرَ أجرَه قبلَ أن يَجِفَّ عرَقُه»</p>
+      <p class="bn">মজুরের প্রাপ্য সময়মতো দেওয়া; শোষণ কঠোরভাবে নিষিদ্ধ।</p>
+      <p class="cite">ইবন মাজাহ</p>
+    </article>
+    <article class="article">
+      <h3>৪৭) হিকমতের সাথে দাওয়াহ</h3>
+      <p class="ayat">﴿ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ﴾</p>
+      <p class="bn">হিকমত, সুন্দর উপদেশ ও উত্তমভাবে বিতর্ক—দাওয়াহর মূলনীতি।</p>
+      <p class="cite">নাহল ১২৫</p>
+    </article>
+    <article class="article">
+      <h3>৪৮) অসুস্থদের খোঁজখবর</h3>
+      <p class="ayat">«عودوا المريضَ»</p>
+      <p class="bn">রোগীর পাশে থাকা—রহমত ও দোয়া লাভের অনন্য সুযোগ।</p>
+      <p class="cite">বুখারি</p>
+    </article>
+    <article class="article">
+      <h3>৪৯) মৃত্যুস্মরণ ও প্রস্তুতি</h3>
+      <p class="ayat">«أكثروا من ذكرِ هادمِ اللذّاتِ»</p>
+      <p class="bn">মৃত্যুস্মরণ পাপ থেকে দূরে রাখে, আমলে আন্তরিকতা আনে।</p>
+      <p class="cite">তিরমিজি</p>
+    </article>
+    <article class="article">
+      <h3>৫০) আল্লাহভীতি ও গোপন আমল</h3>
+      <p class="ayat">﴿يَعْلَمُ خَائِنَةَ الأَعْيُنِ وَمَا تُخْفِي الصُّدُورُ﴾</p>
+      <p class="bn">আল্লাহ সব গোপন জানেন—রিয়া নয়, কেবল তাঁর সন্তুষ্টির জন্য আমল করুন।</p>
+      <p class="cite">গাফির ১৯</p>
+    </article>
+  </div>
+</section>
+</body>
+</html>

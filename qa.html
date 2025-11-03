@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>প্রশ্নোত্তর — عطاء الرحمن راقب</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f16; --ink:#eaf2ff; --muted:#9fb0d5;
+    --accent1:#7ddcff; --accent2:#9dffb4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#0b0f16;color:#eaf2ff;font-family:Poppins,ui-sans-serif,system-ui;}
+  .navbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:linear-gradient(180deg,rgba(11,15,22,.96),rgba(11,15,22,.65));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.08);}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(90deg,#7ddcff,#9dffb4);box-shadow:0 0 16px rgba(125,220,255,.8);}
+  .title{margin:0;font-size:1.2rem;background:linear-gradient(90deg,#7ddcff,#9dffb4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .btn{ text-decoration:none; color:#0b0f16; font-weight:700; padding:10px 14px; border-radius:12px;
+        background:linear-gradient(90deg,#7ddcff,#9dffb4); }
+  .wrap{max-width:900px;margin:30px auto;padding:0 16px;}
+  .qa-head{font-size:1.5rem;margin-bottom:6px;background:linear-gradient(90deg,#7ddcff,#9dffb4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .qa-sub{color:#9fb0d5;margin:0 0 14px}
+  .faq{display:grid;gap:12px}
+  /* Colorful card styles */
+  .faq details{
+    position:relative;border-radius:16px;border:1px solid rgba(255,255,255,.12);
+    padding:14px 16px;background:var(--c-bg,rgba(255,255,255,.06));
+    color:var(--c-ink,#eaf2ff);box-shadow:0 10px 30px rgba(0,0,0,.35);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .faq details:hover{ transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.45); border-color:rgba(255,255,255,.22);}
+  summary{cursor:pointer;font-weight:800;color:var(--c-ink-strong,#fff); list-style:none}
+  summary::-webkit-details-marker{display:none}
+  .arabic{direction:rtl;text-align:right;margin:.4rem 0 .2rem;color:var(--c-ink-strong,#fff)}
+  .bn{color:var(--c-ink,#eaf2ff)}
+  .ref{color:var(--c-ink-soft,#cfe0ff);font-size:.9rem}
+  /* rotating palette */
+  .faq details:nth-child(8n+1){--c-bg:linear-gradient(135deg,#0e2a47,#144b74);--c-ink:#e8f6ff;--c-ink-strong:#fff;--c-ink-soft:#c9e7ff}
+  .faq details:nth-child(8n+2){--c-bg:linear-gradient(135deg,#2a1846,#4a2d7d);--c-ink:#efe6ff;--c-ink-strong:#fff;--c-ink-soft:#d9cfff}
+  .faq details:nth-child(8n+3){--c-bg:linear-gradient(135deg,#0f3b34,#156b5b);--c-ink:#e7fff8;--c-ink-strong:#fff;--c-ink-soft:#c7fff0}
+  .faq details:nth-child(8n+4){--c-bg:linear-gradient(135deg,#3c1425,#7a2341);--c-ink:#ffe8f0;--c-ink-strong:#fff;--c-ink-soft:#ffd3e1}
+  .faq details:nth-child(8n+5){--c-bg:linear-gradient(135deg,#3a2a0f,#7a5a1e);--c-ink:#fff6e6;--c-ink-strong:#fff;--c-ink-soft:#ffe7bf}
+  .faq details:nth-child(8n+6){--c-bg:linear-gradient(135deg,#0f2d3a,#1b5d77);--c-ink:#e6f9ff;--c-ink-strong:#fff;--c-ink-soft:#c6f1ff}
+  .faq details:nth-child(8n+7){--c-bg:linear-gradient(135deg,#1c2d0f,#3f6f1e);--c-ink:#efffe6;--c-ink-strong:#fff;--c-ink-soft:#dbffcb}
+  .faq details:nth-child(8n+8){--c-bg:linear-gradient(135deg,#2e1030,#5e1e63);--c-ink:#ffeaff;--c-ink-strong:#fff;--c-ink-soft:#ffd4ff}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="brand"><span class="dot"></span><h1 class="title"> عطاء الرحمن </h1></div>
+  <div>
+    <a class="btn" href="qa.html">প্রশ্নোত্তর</a>
+    <a class="btn" href="articles.html">আর্টিকেলস</a>
+    <a href="index.html">Manu</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <h2 class="qa-head">প্রশ্নোত্তর (৫০)</h2>
+  <p class="qa-sub">আরবি মূল বাক্য/হাদিসের অংশসহ সংক্ষিপ্ত উত্তর।</p>
+
+  <div class="faq">
+    <details><summary>১) ঈমানের মূল স্তম্ভ কয়টি?</summary>
+      <div class="arabic">أركانُ الإيمانِ سِتَّةٌ: الإيمانُ باللهِ، وملائكته، وكُتُبِه، ورُسُلِه، واليومِ الآخر، والقَدَرِ خيرِه وشرِّه.</div>
+      <div class="bn">৬টি: আল্লাহ, ফেরেশতা, কিতাব, রাসূলগণ, আখেরাত, তাকদীর (ভাল-মন্দ)। <span class="ref">সহিহ মুসলিম</span></div>
+    </details>
+    <details><summary>২) ইসলামের স্তম্ভ কয়টি?</summary>
+      <div class="arabic">بُنِيَ الإسلامُ على خمسٍ…</div>
+      <div class="bn">৫টি: কালিমা, সালাত, যাকাত, রোজা, হজ। <span class="ref">বুখারি/মুসলিম</span></div>
+    </details>
+    <details><summary>৩) শাহাদাহ কী?</summary>
+      <div class="arabic">أشهدُ أن لا إلهَ إلا اللهُ وأشهدُ أنَّ محمدًا رسولُ اللهِ</div>
+      <div class="bn">আল্লাহ ছাড়া উপাস্য নেই ও মুহাম্মদ ﷺ তাঁর রাসূল।</div>
+    </details>
+    <details><summary>৪) সালাত ফরজ কতটি?</summary>
+      <div class="arabic">الصَّلَواتُ الخمسُ</div>
+      <div class="bn">দিনে পাঁচ ওয়াক্ত।</div>
+    </details>
+    <details><summary>৫) অজুর ফরজ কী কী?</summary>
+      <div class="arabic">فاغسِلوا وجوهَكم وأيديَكم إلى المرافِقِ وامسَحوا برؤوسِكم وأرجُلَكم…</div>
+      <div class="bn">মুখ ধোয়া, হাত কনুইসহ, মাসেহ মাথা, পা টাখনুসহ ধোয়া। <span class="ref">মা’ইদাহ ৬</span></div>
+    </details>
+    <details><summary>৬) ফজরের সুন্নাহর ফজিলত?</summary>
+      <div class="arabic">ركعتا الفجرِ خيرٌ من الدنيا وما فيها</div>
+      <div class="bn">ফজরের দুই রাকাত সুন্নাহ দুনিয়া-আখেরাতের চেয়ে উত্তম। <span class="ref">মুসলিম</span></div>
+    </details>
+    <details><summary>৭) জামা’আতের সওয়াব?</summary>
+      <div class="arabic">صلاةُ الجماعةِ أفضلُ من صلاةِ الفَذِّ بسبعٍ وعشرينَ درجةً</div>
+      <div class="bn">একাকীর চেয়ে ২৭ গুণ বেশি। <span class="ref">বুখারি</span></div>
+    </details>
+    <details><summary>৮) সালামে কী বলা হয়?</summary>
+      <div class="arabic">السلامُ عليكم ورحمةُ اللهِ</div>
+      <div class="bn">আসসালামু আলাইকুম ওয়া রহমাতুল্লাহ।</div>
+    </details>
+    <details><summary>৯) সালামের জবাব?</summary>
+      <div class="arabic">وإذا حُيِّيتُم بتحيَّةٍ فحيُّوا بأحسنَ منها أو رُدُّوها</div>
+      <div class="bn">সমপরিমাণ বা উত্তমভাবে জবাব দাও। <span class="ref">নিসা ৮৬</span></div>
+    </details>
+    <details><summary>১০) যাকাত কার উপর ফরজ?</summary>
+      <div class="arabic">على الغنيِّ إذا بلَغ المالُ النِّصابَ وحالَ عليه الحَولُ</div>
+      <div class="bn">নিসাব পরিমাণ সম্পদে বছর পূর্ণ হলে ধনীর উপর।</div>
+    </details>
+    <details><summary>১১) যাকাতের হার কত?</summary>
+      <div class="arabic">في المالِ الحقُّ رُبعُ العُشرِ</div>
+      <div class="bn">সাধারণ সম্পদে ২.৫%।</div>
+    </details>
+    <details><summary>১২) রমজানের রোজা কার উপর?</summary>
+      <div class="arabic">فمن شهد منكم الشهرَ فليصُمْه</div>
+      <div class="bn">সুস্থ, মুকীম প্রাপ্তবয়স্ক মুসলিমের উপর। <span class="ref">বাকারা ১৮৫</span></div>
+    </details>
+    <details><summary>১৩) তারাবি কত রাকাত?</summary>
+      <div class="arabic">صَلَّى رسولُ الله ﷺ في رمضانَ وأوترَ</div>
+      <div class="bn">রাকাতসংখ্যা নিয়ে ইখতেলাফ; ২০ বা ৮—উভয়ই সহিহ দলে আমল।</div>
+    </details>
+    <details><summary>১৪) লাইলাতুল কদর কখন?</summary>
+      <div class="arabic">تَحَرَّوها في الوترِ من العشرِ الأواخرِ</div>
+      <div class="bn">রামাদানের শেষ দশকের বেজোড় রাতগুলোতে।</div>
+    </details>
+    <details><summary>১৫) হজ্জ কাদের উপর ফরজ?</summary>
+      <div class="arabic">وللهِ على الناسِ حِجُّ البيتِ من استطاعَ إليه سبيلًا</div>
+      <div class="bn">সামর্থ্যবান মুসলিমের উপর জীবনে একবার। <span class="ref">আলে-ইমরান ৯৭</span></div>
+    </details>
+    <details><summary>১৬) কুরআন তিলাওয়াতের ফজিলত?</summary>
+      <div class="arabic">اقرؤوا القرآنَ فإنه يأتي شفيعًا لأصحابِه</div>
+      <div class="bn">কুরআন কিয়ামতে সুপারিশকারী হবে। <span class="ref">মুসলিম</span></div>
+    </details>
+    <details><summary>১৭) পিতামাতার সাথে আচরণ?</summary>
+      <div class="arabic">وَبِالْوَالِدَيْنِ إِحْسَانًا</div>
+      <div class="bn">উত্তম আচরণ করো। <span class="ref">ইসরাঃ ২৩</span></div>
+    </details>
+    <details><summary>১৮) গীবত কী?</summary>
+      <div class="arabic">ذِكرُكَ أخاكَ بما يَكرهُ</div>
+      <div class="bn">ভাই সম্পর্কে তার অপছন্দের কথা বলা। <span class="ref">মুসলিম</span></div>
+    </details>
+    <details><summary>১৯) মিথ্যা কেমন পাপ?</summary>
+      <div class="arabic">إنَّ الكذبَ يهدي إلى الفجورِ</div>
+      <div class="bn">পাপের দিকে টেনে নেয়—নাজাত সত্যে।</div>
+    </details>
+    <details><summary>২০) রাগ নিয়ন্ত্রণের উপায়?</summary>
+      <div class="arabic">لا تَغضَبْ</div>
+      <div class="bn">রাসূল ﷺ বারবার বললেন: “রাগ করো না।” <span class="ref">বুখারি</span></div>
+    </details>
+    <details><summary>২১) অসুস্থের খোঁজ নেয়ার সওয়াব?</summary>
+      <div class="arabic">ما مِن مسلمٍ يعودُ مسلمًا إلَّا ابتعَدَ اللهُ به سبعينَ ألفَ مَلَكٍ…</div>
+      <div class="bn">ফেরেশতারা দোয়া করে; বড় সওয়াব।</div>
+    </details>
+    <details><summary>২২) জন্তুর প্রতি দয়া?</summary>
+      <div class="arabic">في كلِّ كبدٍ رطبةٍ أجرٌ</div>
+      <div class="bn">প্রাণীর প্রতি দয়ায় সওয়াব।</div>
+    </details>
+    <details><summary>২৩) আত্মীয়তার সম্পর্ক রাখা?</summary>
+      <div class="arabic">مَن أحبَّ أن يُبسَطَ له في رزقِه… فليَصِلْ رَحِمَه</div>
+      <div class="bn">রিযিক ও আয়ুতে বরকত হয়।</div>
+    </details>
+    <details><summary>২৪) জুমা’র দিন কোন সূরা পড়া?</summary>
+      <div class="arabic">مَن قرأ سورةَ الكهفِ يومَ الجمعةِ…</div>
+      <div class="bn">সূরা কাহফ পড়া মুস্তাহাব; আলো প্রাপ্তি।</div>
+    </details>
+    <details><summary>২৫) সুদ সম্পর্কে কী আদেশ?</summary>
+      <div class="arabic">وأحلَّ اللهُ البيعَ وحرَّمَ الربا</div>
+      <div class="bn">সুদ হারাম; বেচাকেনা হালাল। <span class="ref">বাকারা ২৭৫</span></div>
+    </details>
+    <details><summary>২৬) আমানতদারী?</summary>
+      <div class="arabic">أدِّ الأمانةَ إلى من ائتمنكَ</div>
+      <div class="bn">অমানতের হক আদায় করো।</div>
+    </details>
+    <details><summary>২৭) সত্যবাদিতার ফল?</summary>
+      <div class="arabic">إنَّ الصدقَ يهدي إلى البرِّ</div>
+      <div class="bn">সৎকর্মে পোঁছে, জান্নাতের পথ।</div>
+    </details>
+    <details><summary>২৮) পরনিন্দার পরিত্রাণ?</summary>
+      <div class="arabic">مَن سترَ مسلمًا ستره اللهُ</div>
+      <div class="bn">ভাইয়ের দোষ ঢাকলে আল্লাহ ঢাকবেন।</div>
+    </details>
+    <details><summary>২৯) অনাথের হক?</summary>
+      <div class="arabic">فأمَّا اليتيمَ فلا تَقهَرْ</div>
+      <div class="bn">অবহেলা নয়; সদয় আচরণ।</div>
+    </details>
+    <details><summary>৩০) দান করলে সম্পদ কমে?</summary>
+      <div class="arabic">ما نقص مالٌ من صدقةٍ</div>
+      <div class="bn">দান করলে সম্পদ কমে না; বরং বাড়ে।</div>
+    </details>
+    <details><summary>৩১) বেহায়াপনা থেকে বাঁচা?</summary>
+      <div class="arabic">قل للمؤمنين يَغُضُّوا من أبصارِهم</div>
+      <div class="bn">নজর সংযমের নির্দেশ। <span class="ref">নূর ৩০</span></div>
+    </details>
+    <details><summary>৩২) হিংসা করা যায়?</summary>
+      <div class="arabic">لا حسدَ إلا في اثنتينِ…</div>
+      <div class="bn">শুধু হালাল গিব্তা: কুরআন পাঠক ও দানশীল।</div>
+    </details>
+    <details><summary>৩৩) কবর জিয়ারত?</summary>
+      <div class="arabic">كنتُ نهيتُكم عن زيارةِ القبورِ ألا فزوروها</div>
+      <div class="bn">ইবরত নেওয়ার জন্য জিয়ারত করুন।</div>
+    </details>
+    <details><summary>৩৪) নামাজে খুশু কিভাবে?</summary>
+      <div class="arabic">قَدْ أَفْلَحَ المؤمنونَ الذينَ هم في صلاتِهِم خاشعون</div>
+      <div class="bn">নম্রতা-বিনয় অর্জন করো। <span class="ref">মুমিনূন ১–২</span></div>
+    </details>
+    <details><summary>৩৫) নবী ﷺ-কে ভালোবাসা?</summary>
+      <div class="arabic">لا يؤمنُ أحدُكم حتى أكونَ أحبَّ إليه…</div>
+      <div class="bn">রাসূলের ভালোবাসা নিজের চেয়ে অধিক।</div>
+    </details>
+    <details><summary>৩৬) সুন্নাহর গুরুত্ব?</summary>
+      <div class="arabic">فعليكم بسُنَّتي</div>
+      <div class="bn">সুন্নাহ আঁকড়ে ধরো।</div>
+    </details>
+    <details><summary>৩৭) তাওবা দরজা?</summary>
+      <div class="arabic">إنَّ اللهَ يبسُطُ يدَه بالليلِ ليتوبَ مسيءُ النهارِ…</div>
+      <div class="bn">তাওবার দরজা খোলা থাকে।</div>
+    </details>
+    <details><summary>৩৮) দোয়া কি ইবাদত?</summary>
+      <div class="arabic">الدعاءُ هو العبادةُ</div>
+      <div class="bn">দোয়া ইবাদতের মূল।</div>
+    </details>
+    <details><summary>৩৯) কুরআন বোঝা জরুরি?</summary>
+      <div class="arabic">أفلا يَتدبَّرون القرآنَ</div>
+      <div class="bn">তাদাব্বুরের নির্দেশ।</div>
+    </details>
+    <details><summary>৪০) ন্যায়বিচার করা?</summary>
+      <div class="arabic">اعدِلوا هو أقربُ للتقوى</div>
+      <div class="bn">ন্যায়ে দৃঢ় থাকো। <span class="ref">মায়েদা ৮</span></div>
+    </details>
+    <details><summary>৪১) পর্দা/হিজাব?</summary>
+      <div class="arabic">وليَضرِبنَ بخُمُرِهنَّ على جُيوبِهنَّ</div>
+      <div class="bn">নারীদের পর্দার আদেশ। <span class="ref">নূর ৩১</span></div>
+    </details>
+    <details><summary>৪২) দেরিতে নামাজ?</summary>
+      <div class="arabic">الصلاةُ على وقتِها</div>
+      <div class="bn">সময়মত নামাজই উত্তম কাজ।</div>
+    </details>
+    <details><summary>৪৩) হারাম খাবার?</summary>
+      <div class="arabic">حرَّم عليكم الميتةَ والدمَ ولحمَ الخنزيرِ…</div>
+      <div class="bn">মৃত জন্তু, রক্ত, শূকর প্রভৃতি হারাম।</div>
+    </details>
+    <details><summary>৪৪) মুমিন কে?</summary>
+      <div class="arabic">المسلمُ من سلمَ المسلمونَ من لسانِه ويدِه</div>
+      <div class="bn">যার জবান-হাত থেকে মুসলিম নিরাপদ।</div>
+    </details>
+    <details><summary>৪৫) প্রতিবেশীর হক?</summary>
+      <div class="arabic">ما زال جبريلُ يوصيني بالجارِ…</div>
+      <div class="bn">প্রতিবেশীর হক রক্ষা।</div>
+    </details>
+    <details><summary>৪৬) হাসিমুখে কথা?</summary>
+      <div class="arabic">تبسُّمُك في وجهِ أخيكَ صدقةٌ</div>
+      <div class="bn">হাসিমুখও সদকা।</div>
+    </details>
+    <details><summary>৪৭) কবর-পরবর্তী জীবন?</summary>
+      <div class="arabic">ومن ورائِهم برزخٌ إلى يومِ يُبعثون</div>
+      <div class="bn">বারজাখ আছে—পুনরুত্থান পর্যন্ত।</div>
+    </details>
+    <details><summary>৪৮) কিয়ামতের প্রশ্ন?</summary>
+      <div class="arabic">عن عمرِه فيما أفناه… وعن علمِه… وعن مالِه… وعن جسمِه</div>
+      <div class="bn">জীবন, জ্ঞান, সম্পদ, দেহ—এসবের হিসাব।</div>
+    </details>
+    <details><summary>৪৯) সর্বোত্তম দোয়া?</summary>
+      <div class="arabic">أفضلُ الدعاءِ الحمدُ لله</div>
+      <div class="bn">আলহামদু লিল্লাহ—সর্বোত্তম দোয়া।</div>
+    </details>
+    <details><summary>৫০) সর্বোত্তম জিকির?</summary>
+      <div class="arabic">أفضلُ الذِّكرِ لا إلهَ إلا اللهُ</div>
+      <div class="bn">লা ইলাহা ইল্লাল্লাহ—সর্বোত্তম জিকির।</div>
+    </details>
+  </div>
+</div>
+</body>
+</html>
