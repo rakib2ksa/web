@@ -1,40 +1,325 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Static Photo Gallery + Q/A + Articles — Pure HTML & CSS</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>জুমার খুতবা ব্যানার | সন্তুল হিফজ নগর জামে মসজিদ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* ==== Colorful Card Styles for Q/A and Articles ==== */
+        body {
+            background: linear-gradient(135deg, #0a2e25 0%, #145a45 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Hind Siliguri', 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
 
-/* বেস কার্ড স্টাইল */
-.faq details,
-.articles .article{
-  position: relative;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 14px 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  background: var(--c-bg, rgba(255,255,255,.06));
-  color: var(--c-ink, #eaf2ff);
-  overflow: hidden;
-}
+        /* ব্যানার মেইন কন্টেইনার */
+        .jummah-banner {
+            max-width: 800px;
+            width: 100%;
+            background: linear-gradient(145deg, #fff8ed 0%, #fffef5 100%);
+            border-radius: 48px 48px 48px 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
 
-.faq details:hover,
-.articles .article:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,.45);
-  border-color: rgba(255,255,255,.22);
-}
+        .jummah-banner:hover {
+            transform: scale(1.01);
+        }
 
-/* ভিতরের টেক্সটের কনট্রাস্ট */
-.faq details summary{ 
-  cursor: pointer; 
-  font-weight: 800; 
-  color: var(--c-ink-strong, #ffffff);
+        /* উপরের সুবর্ণ রেখা */
+        .gold-top {
+            height: 10px;
+            background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        }
+
+        /* আরবি ক্যালিগ্রাফি স্টাইলের হেডার */
+        .header-arabic {
+            background: #1a3f35;
+            padding: 18px 20px 12px;
+            text-align: center;
+            border-bottom: 3px solid #e6bc72;
+        }
+
+        .bismillah {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #e6bc72;
+            letter-spacing: 4px;
+            font-family: 'Segoe UI', 'Traditional Arabic', serif;
+        }
+
+        .mosque-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff2cf;
+            line-height: 1.3;
+            margin-top: 6px;
+            text-shadow: 1px 1px 0 #0a2e25;
+        }
+
+        .mosque-name small {
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: block;
+            color: #eedb9b;
+            margin-top: 5px;
+        }
+
+        /* জুমার বিশেষ টাইমলাইন */
+        .jummah-timing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #faf3e0;
+            padding: 12px 25px;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid #e7dbbc;
+        }
+
+        .date-badge {
+            background: #2b5a4a;
+            color: #ffefc0;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .khutba-time {
+            background: #e8dbbc;
+            padding: 5px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #8b5e2c;
+            font-size: 1.2rem;
+        }
+
+        /* মূল খুতবা থিম */
+        .khutba-core {
+            padding: 30px 28px 20px;
+            text-align: center;
+        }
+
+        .khutba-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #eef3e8;
+            padding: 10px 28px;
+            border-radius: 60px;
+            margin-bottom: 25px;
+            border: 1px solid #d4b87a;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .khutba-title span:first-child {
+            font-size: 2rem;
+        }
+
+        .khutba-title h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #b5651e;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        /* খুতবার বিবরণ */
+        .khutba-message {
+            background: #ffffffd9;
+            border-radius: 32px;
+            padding: 20px 25px;
+            margin: 15px 0 20px;
+            border: 1px solid #efdfb7;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .khutba-message p {
+            font-size: 1.2rem;
+            line-height: 1.65;
+            color: #2c3a2f;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fff1bf 0%, #fff1bf 40%, transparent 70%);
+            font-weight: 700;
+            color: #aa6f20;
+            padding: 0 4px;
+        }
+
+        .location-info {
+            background: #f7efdd;
+            padding: 12px 20px;
+            border-radius: 28px;
+            margin-top: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-left: 5px solid #c99e4b;
+        }
+
+        /* বিশেষ তাগিদ সেকশন */
+        .special-note {
+            margin-top: 20px;
+            background: #fff4e3;
+            padding: 15px;
+            border-radius: 28px;
+            text-align: center;
+        }
+
+        .special-note strong {
+            color: #c0392b;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .special-note p {
+            font-size: 0.95rem;
+            color: #5a4a2e;
+        }
+
+        /* ফুটার স্ট্যাম্প */
+        .footer-stamp {
+            background: #e9e0ca;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #5c4b2b;
+            border-top: 1px dashed #c6aa6b;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-stamp div {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .minbar-icon {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: -8px;
+            font-size: 24px;
+            opacity: 0.6;
+            color: #c19847;
+        }
+
+        @media (max-width: 550px) {
+            .khutba-core {
+                padding: 20px 18px;
+            }
+            .khutba-title h1 {
+                font-size: 1.4rem;
+            }
+            .mosque-name {
+                font-size: 1.2rem;
+            }
+            .khutba-message p {
+                font-size: 1rem;
+            }
+            .jummah-timing {
+                justify-content: center;
+            }
+        }
+
+        /* অলংকরণ */
+        .dome-decor {
+            font-size: 12px;
+            text-align: center;
+            color: #e0bf7a;
+            letter-spacing: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="jummah-banner">
+        <div class="gold-top"></div>
+        <div class="header-arabic">
+            <div class="bismillah">بسم الله الرحمن الرحيم</div>
+            <div class="mosque-name">
+                সন্তুল হিফজ নগর অলি হাদীস জামে মসজিদ
+                <small>আহলুস সুন্নাত ওয়াল জামাত | খিলক্ষেত, ঢাকা</small>
+            </div>
+        </div>
+
+        <div class="jummah-timing">
+            <div class="date-badge">
+                📅 ৩ এপ্রিল ২০২৬
+            </div>
+            <div class="khutba-time">
+                🕌 জুমার খুতবা শুরু: ১২:১০ মিনিট
+            </div>
+        </div>
+
+        <div class="khutba-core">
+            <div class="khutba-title">
+                <span>📜</span>
+                <h1>সাপ্তাহিক জুমার খুতবা</h1>
+                <span>🕋</span>
+            </div>
+
+            <div class="khutba-message">
+                <p>
+                    ❝ <span class="highlight">হে মুমিনগণ! জুমআর দিন যখন নামাযের জন্য আহ্বান করা হয়, তখন তোমরা আল্লাহর স্মরণের দিকে ধাবিত হও</span> ❞
+                    <br>(সূরা আল-জুমুআ, আয়াত ৯)
+                </p>
+                <p>
+                    এই পবিত্র জুমআয় <strong>মাওলানা ও হাফেজ ক্বারীগণ</strong> খুতবার মাধ্যমে উপস্থিত মুসল্লিদের উদ্দেশ্যে গুরুত্বপূর্ণ নসিহত পেশ করবেন। 
+                    <strong>বিষয়:</strong> "উম্মাহর ঐক্য ও তাকওয়ার পথে ফিরে আসা"।
+                </p>
+                <div class="location-info">
+                    📍 স্থান: <strong>মস্তুল (বলতলা বাজার), খিলক্ষেত, ঢাকা</strong> — জামে মসজিদ প্রাঙ্গণ
+                </div>
+            </div>
+
+            <div class="special-note">
+                <strong>⚠️ বিশেষ তাগিদ ⚠️</strong>
+                <p>
+                    খুতবা শ্রবণ করা ওয়াজিব। দয়া করে নির্ধারিত সময়ের পূর্বেই মসজিদে উপস্থিত হয়ে <br>
+                    খুতবার পূর্ণ বরকত হাসিল করুন। জুমআর পূর্ববর্তী ও পরবর্তী সুন্নত সমূহ আদায়ে যত্নবান হোন।
+                </p>
+            </div>
+        </div>
+
+        <div class="minbar-icon">
+            ﴿ يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا نُودِيَ لِلصَّلَاةِ مِن يَوْمِ الْجُمُعَةِ ﴾
+        </div>
+
+        <div class="footer-stamp">
+            <div>📢 ইমাম ও খতীব: হাফেজ মাওলানা আব্দুল হামিদ</div>
+            <div>🏛️ মসজিদ কমিটি কর্তৃক প্রচারিত</div>
+            <div>📅 প্রকাশ: ২৮ মার্চ ২০২৬</div>
+        </div>
+        <div class="dome-decor">
+            ★ ☆ ★ ★ ☆ ★
+        </div>
+    </div>
+</body>
+</html>  color: var(--c-ink-strong, #ffffff);
 }
 .faq details .arabic,
 .articles .article .ayat{
